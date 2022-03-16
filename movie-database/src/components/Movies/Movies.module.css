@@ -42,7 +42,7 @@
 
 /* Medium Screen */
 @media (min-width: 768px) {
-  .movies__container {
+  .movie__container {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
