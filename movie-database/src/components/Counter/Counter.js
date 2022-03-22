@@ -6,7 +6,7 @@ function Counter() {
    * Membuat state menggunakan useState dan set nilai awal 0
    * useState mengembalikan 2 nilai:
    * - Berisi current value: result.
-   * - Berisi fungsi untuk mengupdate result.
+   * - Berisi fungsi untuk mengupdate result: setResult.
    * Melakukan destructing array dari hasil useState
    */
   const [result, setResult] = useState(0);
