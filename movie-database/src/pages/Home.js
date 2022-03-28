@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Hero from "../components/Hero/Hero";
 import Movies from "../components/Movies/Movies";
 import Footer from "../components/Footer/Footer";
+import AddMovieForm from "../components/AddMovieForm/AddMovieForm";
 
 /**
  * Membuat Component Main.
@@ -13,6 +14,7 @@ function Main() {
     <main>
       <Hero />
       <Movies />
+      <AddMovieForm />
     </main>
   );
 }
