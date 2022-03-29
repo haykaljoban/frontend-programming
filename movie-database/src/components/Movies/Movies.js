@@ -1,14 +1,10 @@
-// Import useState dari React
-import { useState } from "react";
 import { nanoid } from "nanoid";
 import Movie from "../Movie/Movie";
 import styles from "./Movies.module.css";
-// Import Data Movies
-import data from "../../utils/constants/data";
 
-function Movies() {
-  // Membuat state movies
-  const [movies, setMovies] = useState(data);
+function Movies(props) {
+  // Destructing props: state movies
+  const { movies, setMovies } = props;
 
   function handleClick() {
     const movie = {
