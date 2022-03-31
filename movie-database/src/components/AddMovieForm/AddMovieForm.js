@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import Alert from "../Alert/Alert";
 import styles from "./AddMovieForm.module.css";
 
 // Menangkap props
@@ -15,6 +16,10 @@ function AddMovieForm(props) {
   // Membuat state title dan date
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
+
+  // Membuat state: isTitleError, isDateError
+  const [isTitleError, setIsTitleError] = useState(false);
+  const [isDateError, setIsDateError] = useState(false);
 
   /**
    * Membuat fungsi handleTitle
@@ -47,16 +52,30 @@ function AddMovieForm(props) {
      */
     e.preventDefault();
 
-    const movie = {
-      id: nanoid(),
-      title: title,
-      year: date,
-      type: "Movie",
-      poster: "https://picsum.photos/300/400",
-    };
+    // Jika title kosong, set isTitleError true
+    if (title === "") {
+      setIsTitleError(true);
+    }
+    // Jika title kosong, set isTitleError true
+    else if (date === "") {
+      setIsDateError(true);
+    }
+    // Jika tidak, maka push movie dan set error false
+    else {
+      const movie = {
+        id: nanoid(),
+        title: title,
+        year: date,
+        type: "Movie",
+        poster: "https://picsum.photos/300/400",
+      };
 
-    // SOLVED: HOW TO ADD MOVIE TO MOVIES :)
-    setMovies([...movies, movie]);
+      // SOLVED: HOW TO ADD MOVIE TO MOVIES :)
+      setMovies([...movies, movie]);
+
+      setIsTitleError(false);
+      setIsDateError(false);
+    }
   }
 
   return (
@@ -86,6 +105,11 @@ function AddMovieForm(props) {
                 // Memberikan event onChange
                 onChange={handleTitle}
               />
+              {/*
+               * Menambahkan infline if: operator &&
+               * Jika isTitleError true maka render error
+               */}
+              {isTitleError && <Alert>Title Wajib Diisi</Alert>}
             </div>
             <div className={styles.form__group}>
               <label htmlFor="date" className={styles.form__label}>
@@ -101,6 +125,11 @@ function AddMovieForm(props) {
                 // Memberikan event onChange
                 onChange={handleDate}
               />
+              {/*
+               * Menambahkan infline if: operator &&
+               * Jika isDateError true maka render error
+               */}
+              {isDateError && <Alert>Date Wajib Diisi</Alert>}
             </div>
             <div>
               <button className={styles.form__button}>Add Movie</button>
