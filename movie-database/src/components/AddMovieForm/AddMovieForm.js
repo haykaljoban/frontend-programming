@@ -16,10 +16,13 @@ function AddMovieForm(props) {
   // Membuat state title dan date
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
+  const [poster, setPoster] = useState("");
+  const [type, setType] = useState("");
 
   // Membuat state: isTitleError, isDateError
   const [isTitleError, setIsTitleError] = useState(false);
   const [isDateError, setIsDateError] = useState(false);
+  const [isPosterError, setIsPosterError] = useState(false);
 
   /**
    * Membuat fungsi handleTitle
@@ -45,6 +48,14 @@ function AddMovieForm(props) {
     setDate(e.target.value);
   }
 
+  function handlePoster(e) {
+    setPoster(e.target.value);
+  }
+
+  function handleType(e) {
+    setType(e.target.value);
+  }
+
   function handleSubmit(e) {
     /**
      * Mencegah perilaku default form.
@@ -59,6 +70,10 @@ function AddMovieForm(props) {
     // Jika title kosong, set isTitleError true
     else if (date === "") {
       setIsDateError(true);
+      setIsTitleError(false);
+    } else if (poster === "") {
+      setIsPosterError(true);
+      setIsDateError(false);
     }
     // Jika tidak, maka push movie dan set error false
     else {
@@ -130,6 +145,36 @@ function AddMovieForm(props) {
                * Jika isDateError true maka render error
                */}
               {isDateError && <Alert>Date Wajib Diisi</Alert>}
+            </div>
+            <div className={styles.form__group}>
+              <label htmlFor="poster" className={styles.form__label}>
+                Poster
+              </label>
+              <input
+                onChange={handlePoster}
+                id="poster"
+                className={styles.form__input}
+                name="poster"
+                type="text"
+                value={poster}
+              />
+              {isPosterError && <Alert>Poster Wajib Diisi</Alert>}
+            </div>
+            <div className={styles.form__group}>
+              <label htmlFor="type" className={styles.form__label}>
+                Type
+              </label>
+              <select
+                id="type"
+                className={styles.form__select}
+                name="type"
+                value={type}
+                onChange={handleType}
+              >
+                <option value="Action">Action</option>
+                <option value="Drama">Drama</option>
+                <option value="Horor">Horor</option>
+              </select>
             </div>
             <div>
               <button className={styles.form__button}>Add Movie</button>

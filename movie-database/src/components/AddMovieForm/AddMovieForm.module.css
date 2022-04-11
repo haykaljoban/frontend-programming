@@ -47,6 +47,17 @@
   border: 1px solid #4361ee;
 }
 
+.form__select {
+  outline: none;
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.form__select:focus {
+  border: 1px solid #4361ee;
+}
+
 .form__button {
   padding: 0.8rem 2rem;
   border: none;
