@@ -5,93 +5,79 @@ import styles from "./AddMovieForm.module.css";
 
 // Menangkap props
 function AddMovieForm(props) {
-  /**
-   * Ini hanya snippet(potongan) code.
-   * Kode yang lainnya tetap sama.
-   */
-
   // Destructing props: state movies
   const { movies, setMovies } = props;
 
-  // Membuat state title dan date
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [poster, setPoster] = useState("");
-  const [type, setType] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    date: "",
+    poster: "",
+    type: "",
+  });
 
-  // Membuat state: isTitleError, isDateError
+  /**
+   * TODO
+   * - PROBLEM: 1 ERROR 1 STATE.
+   * - TODO: REFACTOR SEMUA ERROR JADI 1 STATE.
+   */
   const [isTitleError, setIsTitleError] = useState(false);
   const [isDateError, setIsDateError] = useState(false);
   const [isPosterError, setIsPosterError] = useState(false);
 
-  /**
-   * Membuat fungsi handleTitle
-   * Dijalankan ketika nilai input berubah
-   */
-  function handleTitle(e) {
+  function handleChange(e) {
+    // Destructing name dan value.
+    const { name, value } = e.target;
+
     /**
-     * Jalankan fungsi setTitile.
-     * Set title nilai baru: input saat ini.
+     * Mengupdate state berupa object:
+     * - Menggunakan spread operator:
+     * - Update property berdasarkan apapun nilai name.
      */
-    setTitle(e.target.value);
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   }
 
-  /**
-   * Membuat fungsi handleDate
-   * Dijalankan ketika nilai input berubah
-   */
-  function handleDate(e) {
-    /**
-     * Jalankan fungsi setDate.
-     * Set date nilai baru: input saat ini.
-     */
-    setDate(e.target.value);
-  }
-
-  function handlePoster(e) {
-    setPoster(e.target.value);
-  }
-
-  function handleType(e) {
-    setType(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    /**
-     * Mencegah perilaku default form.
-     * Mencegah form direfresh ketika disubmit.
-     */
-    e.preventDefault();
-
-    // Jika title kosong, set isTitleError true
+  function validate() {
     if (title === "") {
       setIsTitleError(true);
-    }
-    // Jika title kosong, set isTitleError true
-    else if (date === "") {
+      return false;
+    } else if (date === "") {
       setIsDateError(true);
       setIsTitleError(false);
+      return false;
     } else if (poster === "") {
       setIsPosterError(true);
       setIsDateError(false);
-    }
-    // Jika tidak, maka push movie dan set error false
-    else {
-      const movie = {
-        id: nanoid(),
-        title: title,
-        year: date,
-        type: "Movie",
-        poster: "https://picsum.photos/300/400",
-      };
-
-      // SOLVED: HOW TO ADD MOVIE TO MOVIES :)
-      setMovies([...movies, movie]);
-
+      return false;
+    } else {
       setIsTitleError(false);
       setIsDateError(false);
+      return true;
     }
   }
+
+  function addMovie() {
+    const movie = {
+      id: nanoid(),
+      title: title,
+      year: date,
+      type: type,
+      poster: poster,
+    };
+
+    // SOLVED: HOW TO ADD MOVIE TO MOVIES :)
+    setMovies([...movies, movie]);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    validate() && addMovie();
+  }
+
+  const { title, date, poster, type } = formData;
 
   return (
     <div className={styles.container}>
@@ -118,7 +104,7 @@ function AddMovieForm(props) {
                 // Memberikan value input: title
                 value={title}
                 // Memberikan event onChange
-                onChange={handleTitle}
+                onChange={handleChange}
               />
               {/*
                * Menambahkan infline if: operator &&
@@ -138,7 +124,7 @@ function AddMovieForm(props) {
                 // Memberikan value input: date
                 value={date}
                 // Memberikan event onChange
-                onChange={handleDate}
+                onChange={handleChange}
               />
               {/*
                * Menambahkan infline if: operator &&
@@ -151,7 +137,7 @@ function AddMovieForm(props) {
                 Poster
               </label>
               <input
-                onChange={handlePoster}
+                onChange={handleChange}
                 id="poster"
                 className={styles.form__input}
                 name="poster"
@@ -169,7 +155,7 @@ function AddMovieForm(props) {
                 className={styles.form__select}
                 name="type"
                 value={type}
-                onChange={handleType}
+                onChange={handleChange}
               >
                 <option value="Action">Action</option>
                 <option value="Drama">Drama</option>
