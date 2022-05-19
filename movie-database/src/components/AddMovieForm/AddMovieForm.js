@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import Alert from "../Alert/Alert";
+import Button from "../ui/Button";
 import styles from "./AddMovieForm.module.css";
 
 // Menangkap props
@@ -163,7 +164,7 @@ function AddMovieForm(props) {
               </select>
             </div>
             <div>
-              <button className={styles.form__button}>Add Movie</button>
+              <Button full>Add Movie</Button>
             </div>
           </form>
         </div>
