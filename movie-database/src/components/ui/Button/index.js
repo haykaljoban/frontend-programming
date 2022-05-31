@@ -12,12 +12,17 @@ const Button = styled.button`
     props.theme.colors[props.variant] || props.theme.colors["primary"]};
 
   // PROPS FULL
-  ${(props) =>
-    props.full &&
+  ${({ full }) =>
+    full &&
     css`
       display: block;
       width: 100%;
     `}
+
+  // PROPS SIZE
+  font-size: ${({ size, theme }) =>
+    theme.fontSize[size] || theme.fontSize["md"]};
+  padding: ${({ size, theme }) => theme.padding[size || theme.padding["md"]]};
 `;
 
 export default Button;
