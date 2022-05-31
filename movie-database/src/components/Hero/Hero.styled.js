@@ -32,7 +32,12 @@ const StyledHero = styled.section`
 
   p {
     color: #64748b;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    text-align: justify;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   img {
