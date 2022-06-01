@@ -10,6 +10,7 @@ import Layout from "./Layout";
 import { ThemeProvider } from "styled-components";
 import theme from "./utils/constants/theme";
 import GlobalStyle from "./components/GlobalStyle";
+import Detail from "./pages/movie/Detail";
 
 function App() {
   /**
@@ -39,6 +40,13 @@ function App() {
             <Route path="/movie/popular" element={<PopularMovie />} />
             <Route path="/movie/now" element={<NowPlayingMovie />} />
             <Route path="/movie/top" element={<TopRatedMovie />} />
+            {/*
+             * Menambahkan routing untuk Detail Movie Page.
+             * Mengirim parameter:
+             * - Menggunakan titik dua
+             * - Nama parameter adalah id
+             */}
+            <Route path="/movie/:id" element={<Detail />} />
           </Routes>
         </Layout>
       </ThemeProvider>
