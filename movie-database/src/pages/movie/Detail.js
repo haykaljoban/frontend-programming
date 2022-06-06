@@ -12,6 +12,7 @@ function Detail() {
 
   useEffect(() => {
     getRecommendationMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   async function getRecommendationMovies() {

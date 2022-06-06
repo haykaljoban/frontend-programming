@@ -20,6 +20,7 @@ function DetailMovie() {
      * - Jika parameter kosong, useEffect dijalankan sekali (Mount).
      * - Parameter array biasa disebut sebagai dependencies.
      */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   async function getDetailMovie() {
