@@ -14,8 +14,8 @@ import Detail from "./pages/movie/Detail";
 
 function App() {
   /**
-   * Tag div bisa diganti dengan tag <>.
-   * Tag <> adalah React fragment
+   * Tidak membutuhkan state movies.
+   * Tidak perlu kirim props movies ke setiap component (props drilling).
    */
   return (
     <>
@@ -35,7 +35,7 @@ function App() {
            * Buat Routing menggunakan Route.
            */}
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<Home />} />
             <Route path="/movie/create" element={<CreateMovie />} />
             <Route path="/movie/popular" element={<PopularMovie />} />
             <Route path="/movie/now" element={<NowPlayingMovie />} />
