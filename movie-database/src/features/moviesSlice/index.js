@@ -15,7 +15,7 @@ const moviesSlice = createSlice({
     addMovie(state, action) {
       state.movies.push(action.payload);
     },
-    // Membuat reducer: update movies
+    // Membuat reducer updateMovies: untuk update movies
     updateMovies(state, action) {
       state.movies = action.payload;
     },
