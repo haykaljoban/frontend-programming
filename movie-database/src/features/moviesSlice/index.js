@@ -24,6 +24,9 @@ const moviesSlice = createSlice({
        */
       state.movies.push(action.payload);
     },
+    updateMovies(state, action) {
+      state.movies = action.payload;
+    },
   },
 });
 
@@ -31,9 +34,9 @@ const moviesSlice = createSlice({
  * Slice menghasilkan action dan reducers
  * Nama action diambil dari nama reducer
  */
-const { addMovie } = moviesSlice.actions;
+const { addMovie, updateMovies } = moviesSlice.actions;
 const moviesReducer = moviesSlice.reducer;
 
 // Export reducers dan actions
 export default moviesReducer;
-export { addMovie };
+export { addMovie, updateMovies };

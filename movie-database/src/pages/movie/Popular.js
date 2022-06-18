@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Hero from "../../components/Hero/Hero";
 import Movies from "../../components/Movies/Movies";
+import { updateMovies } from "../../features/moviesSlice";
 import ENDPOINTS from "../../utils/constants/endpoint";
 
 function PopularMovie() {
   // Membuat state movies
-  const [movies, setMovies] = useState([]);
+  const dispatch = useDispatch();
 
   /**
    * Melakukan useEffect.
@@ -28,7 +30,7 @@ function PopularMovie() {
      * Simpan data movies dari axios ke state movies.
      * Upadte state menggunakan setMovies().
      */
-    setMovies(response.data.results);
+    dispatch(updateMovies(response.data.results));
   }
 
   /**
@@ -38,7 +40,7 @@ function PopularMovie() {
   return (
     <>
       <Hero />
-      <Movies title="Popular Movies" movies={movies} />
+      <Movies title="Popular Movies" />
     </>
   );
 }
