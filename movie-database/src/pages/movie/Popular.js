@@ -7,7 +7,7 @@ import { updateMovies } from "../../features/moviesSlice";
 import ENDPOINTS from "../../utils/constants/endpoint";
 
 function PopularMovie() {
-  // Buat dispatch: untuk trigger action
+  // Membuat state movie
   const dispatch = useDispatch();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
