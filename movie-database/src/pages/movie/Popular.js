@@ -7,36 +7,20 @@ import { updateMovies } from "../../features/moviesSlice";
 import ENDPOINTS from "../../utils/constants/endpoint";
 
 function PopularMovie() {
-  // Membuat state movies
+  // Membuat state movie
   const dispatch = useDispatch();
 
-  /**
-   * Melakukan useEffect.
-   * useEffect to perform other jobs: fetch data
-   */
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     getPopularMovies();
   }, []);
 
   async function getPopularMovies() {
-    /**
-     * Menggunakan library axios.
-     * Axios digunakan untuk melakukan fetch data.
-     */
     const response = await axios(ENDPOINTS.POPULAR);
-
-    /**
-     * Simpan data movies dari axios ke state movies.
-     * Upadte state menggunakan setMovies().
-     */
+    // Jalankan action updateMovies: kirim movies dari api
     dispatch(updateMovies(response.data.results));
   }
 
-  /**
-   * Render Component Movies.
-   * Kirim props movies yang berisi nilai state movies
-   */
   return (
     <>
       <Hero />

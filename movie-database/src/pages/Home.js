@@ -11,7 +11,7 @@ function Home() {
   return (
     <>
       <Hero />
-      <Movies title="Latest Movies" />
+      <Movies title="Local Movies" />
     </>
   );
 }
