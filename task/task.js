@@ -4,7 +4,13 @@
  * Object memiliki property: name, age, major.
  * Note: Ubah var menggunakan JavaScript Modern.
  */
-var users;
+let users = [
+  {name: "Haykal Saputra Joban", age: 20, major: "Teknik Informatik"},
+  {name: "Ucup", age: 23, major: "Sistem Infomasi"},
+  {name: "Alfiansyah", age: 24, major: "Bisnis Digital"},
+  {name: "Amarudin", age: 25, major: "Teknik Informatik"},
+  {name: "Bayu", age: 22, major: "Sistem Informasi"},
+]; 
 
 /**
  * TODO 2
@@ -12,7 +18,11 @@ var users;
  * Hint: Gunakan for/for-of.
  * Note: Ubah function menggunakan arrow function.
  */
-function all() {}
+const all = () => {
+  for (const user of users) {
+    console.log(`Name: ${user.name}, Age: ${user.age}, Major: ${user.major}`);
+  }
+};
 
 /**
  * TODO 3
@@ -20,7 +30,11 @@ function all() {}
  * Hint: Gunakan method push.
  * Note: Ubah function menggunakan arrow function.
  */
-function store(user) {}
+const store = (name, age, major) => {
+  const newUser = { name, age, major };
+  users.push(newUser);
+  console.log("User added successfully!");
+};
 
 /**
  * TODO 4.
@@ -28,7 +42,14 @@ function store(user) {}
  * Hint: re-assign array.
  * Note: Ubah function menggunakan arrow function.
  */
-function update(index, user) {}
+const update = (index, name, age, major) => {
+  if (index < 0 || index >= users.length) {
+    console.log("Invalid index!");
+  } else {
+    users[index] = { name, age, major };
+    console.log("User updated successfully!");
+  }
+};
 
 /**
  * TODO 5.
@@ -36,7 +57,14 @@ function update(index, user) {}
  * Hint: Gunakan method splice.
  * Note: Ubah function menggunakan arrow function.
  */
-function destroy(index) {}
+const destroy = (index) => {
+  if (index < 0 || index >= users.length) {
+    console.log("Invalid index!");
+  } else {
+    users.splice(index, 1);
+    console.log("User deleted successfully!");
+  }
+};
 
 /**
  * Function main.
